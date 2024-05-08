@@ -5,11 +5,13 @@ import {
   saveNewRoute,
   deleteRoute,
 } from "./models/routes.js";
+import cors from "cors";
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json()); // express.json() middleware is used to parse incoming JSON requests
+app.use(cors({ origin: "*" })); // change from * to make more secure
 
 // 1_ GET all routes (to display in table on FrontEnd (FE)) ---- /getAllRoutes
 // GET to retrieve stored route
