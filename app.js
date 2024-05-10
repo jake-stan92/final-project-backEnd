@@ -11,7 +11,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json()); // express.json() middleware is used to parse incoming JSON requests
-app.use(cors({ origin: "https://u-plot.netlify.app" })); // change from * to make more secure
+app.use(
+  cors({ origin: "https://u-plot.netlify.app", methods: ["GET", "POST"] })
+); // change from * to make more secure
 
 // 1_ GET all routes (to display in table on FrontEnd (FE)) ---- /getAllRoutes
 // GET to retrieve stored route
