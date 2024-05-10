@@ -11,9 +11,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json()); // express.json() middleware is used to parse incoming JSON requests
-app.use(
-  cors({ origin: "https://u-plot.netlify.app", methods: ["GET", "POST"] })
-); // change from * to make more secure
+app.options("*", cors());
+app.use(cors()); // change from * to make more secure
 
 // 1_ GET all routes (to display in table on FrontEnd (FE)) ---- /getAllRoutes
 // GET to retrieve stored route
@@ -36,7 +35,7 @@ app.get("/route/:id", async (req, res) => {
 });
 
 // POST to store/save a route
-app.post("/newRoute", async (req, res) => {
+app.post("/newRoute", cors(), async (req, res) => {
   //define data from request body - THIS WILL NEED VALIDATING!
   const route = req.body;
   // add new route to DB once validated
