@@ -11,8 +11,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json()); // express.json() middleware is used to parse incoming JSON requests
-app.options("*", cors());
-app.use(cors()); // change from * to make more secure
+// app.options("*", cors());
+// app.use(cors()); // change from * to make more secure
+app.use(cors({ origin: "*" }));
 
 // 1_ GET all routes (to display in table on FrontEnd (FE)) ---- /getAllRoutes
 // GET to retrieve stored route
@@ -35,7 +36,8 @@ app.get("/route/:id", async (req, res) => {
 });
 
 // POST to store/save a route
-app.post("/newRoute", cors(), async (req, res) => {
+app.post("/newRoute", async (req, res) => {
+  // cors()
   //define data from request body - THIS WILL NEED VALIDATING!
   const route = req.body;
   console.log("req.body received:");

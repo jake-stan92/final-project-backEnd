@@ -11,7 +11,7 @@ async function resetDatabase() {
         CREATE TABLE routes (
             id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
             route_name VARCHAR(255) NOT NULL,
-            route_data TEXT[]
+            route_data JSON
         );
     `);
 
@@ -19,7 +19,7 @@ async function resetDatabase() {
     await pool.query(`
       INSERT INTO routes (route_name, route_data)
       VALUES 
-        ('test_Route', ARRAY ['{lat: 123, lng: 1234}'])
+        ('test_Route', '[{"lat": 123, "lng": 1234}]')
         `);
 
     // Validate script

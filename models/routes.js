@@ -25,7 +25,7 @@ export async function saveNewRoute(route) {
   const queryText =
     "INSERT INTO routes (route_name, route_data) VALUES ($1, $2) RETURNING *";
   // take values from req body
-  const values = [route.name, route.data];
+  const values = [route.name, JSON.stringify(route.data)];
   //Send query to DB
   const result = await pool.query(queryText, values);
   // return result (newly added route)
