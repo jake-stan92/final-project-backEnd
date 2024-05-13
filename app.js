@@ -38,10 +38,14 @@ app.get("/route/:id", async (req, res) => {
 app.post("/newRoute", cors(), async (req, res) => {
   //define data from request body - THIS WILL NEED VALIDATING!
   const route = req.body;
+  console.log("req.body received:");
+  console.log(JSON.stringify(route));
   // add new route to DB once validated
   const newRoute = await saveNewRoute(route);
+  console.log("Returned route:");
+  console.log(newRoute);
   // return new route and success
-  res.status(201).json({ status: "success", payload: newRoute });
+  res.status(201).json({ status: "success", payload: { newRoute } });
 });
 
 // DELETE to delete a saved route

@@ -21,7 +21,6 @@ export async function getRouteById(id) {
 
 // POST new route
 export async function saveNewRoute(route) {
-  //   console.log(route);
   //define SQL query for new route
   const queryText =
     "INSERT INTO routes (route_name, route_data) VALUES ($1, $2) RETURNING *";
